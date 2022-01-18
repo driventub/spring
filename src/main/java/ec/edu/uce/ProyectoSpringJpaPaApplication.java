@@ -5,10 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ec.edu.uce.modelo.Paciente;
-import ec.edu.uce.modelo.Receta;
+import ec.edu.uce.modelo.jpa.Guardia;
 import ec.edu.uce.service.IGestorCitaService;
 import ec.edu.uce.service.IPacienteService;
+import ec.edu.uce.service.jpa.IGuardiaService;
 
 @SpringBootApplication
 public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
@@ -18,6 +18,9 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IGestorCitaService gestorCitaService;
+	
+	@Autowired
+	private IGuardiaService guardia;
 	
 	
 	public static void main(String[] args) {
@@ -45,6 +48,7 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 //		
 //		System.out.println(p);
 		
+		/*
 		Paciente p1 = new Paciente();
 		p1.setId(10);
 		p1.setNombre("Canino");
@@ -57,6 +61,20 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 		r1.setMedicamentos("Paracetamol");
 		
 		this.gestorCitaService.registrarNuevaConsulta(p1,r1);
+		*/
+		
+		Guardia g = new Guardia();
+		
+		g.setNombre("Fulano");
+		g.setApellido("DeTroya");
+		g.setEdificio("Naciones Unidas");
+		this.guardia.guardar(g);
+		
+		Guardia g1 = new Guardia();
+		g1.setId(3);
+		g1.setNombre("Otro");
+		g1.setApellido("Apellido");
+		this.guardia.actualizar(g1);
 	}
 
 }
