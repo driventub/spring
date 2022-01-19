@@ -65,16 +65,23 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 		
 		Guardia g = new Guardia();
 		
-		g.setNombre("Fulano");
-		g.setApellido("DeTroya");
-		g.setEdificio("Naciones Unidas");
-		this.guardia.guardar(g);
+		g.setNombre("Consola");
+		g.setApellido("MVN");
+		g.setEdificio("Clean Install");
+//		this.guardia.guardar(g);
 		
-		Guardia g1 = new Guardia();
-		g1.setId(3);
-		g1.setNombre("Otro");
-		g1.setApellido("Apellido");
-		this.guardia.actualizar(g1);
+//		Guardia g1 = new Guardia();
+//		g1.setId(3);
+//		g1.setNombre("Otro");
+//		g1.setApellido("Apellido");
+//		this.guardia.actualizar(g1);
+		
+//		this.guardia.eliminar(2)
+
+		Guardia gApellido = this.guardia.buscarApellido("MVN");
+		System.out.println(gApellido);
+		
+		
 	}
 
 }

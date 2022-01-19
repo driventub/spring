@@ -11,5 +11,7 @@ public interface IGuardiaRepo {
 	void actualizarGuardiaPorId(Guardia p);
 
 	void borrarGuardiaPorId(Integer id);
+	
+	Guardia buscarGuardiaPorApellido(String apellido);
 
 }
