@@ -1,27 +1,33 @@
 package ec.edu.uce;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import ec.edu.uce.modelo.jpa.Guardia;
-import ec.edu.uce.service.IGestorCitaService;
-import ec.edu.uce.service.IPacienteService;
+import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
 import ec.edu.uce.service.jpa.IGuardiaService;
+
+
 
 @SpringBootApplication
 public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
-	@Autowired
-	private IPacienteService pacienteService;
-	
-	
-	@Autowired
-	private IGestorCitaService gestorCitaService;
+//	@Autowired
+//	private IPacienteService pacienteService;
+//	
+//	
+//	@Autowired
+//	private IGestorCitaService gestorCitaService;
 	
 	@Autowired
 	private IGuardiaService guardia;
 	
+	
+	private static final Logger LOG= LoggerFactory.getLogger(GuardiaRepoImpl.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaPaApplication.class, args);
@@ -78,8 +84,16 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 		
 //		this.guardia.eliminar(2)
 
-		Guardia gApellido = this.guardia.buscarApellido("MVN");
-		System.out.println(gApellido);
+//		Guardia gApellido = this.guardia.buscarApellido("DeTroya11");
+		
+		//Lo de TypedQuery
+//		Guardia gApellido = this.guardia.buscarApellidoTyped("MVN");
+		
+//		Lo de NamedQuery
+		Guardia gApellido = this.guardia.buscarApellidoNamed("MVN");
+		
+		
+		LOG.info(gApellido.toString());
 		
 		
 	}
