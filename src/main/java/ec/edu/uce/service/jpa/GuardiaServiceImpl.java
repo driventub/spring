@@ -59,5 +59,11 @@ public class GuardiaServiceImpl implements IGuardiaService{
 		// TODO Auto-generated method stub
 		return this.guardiaRepo.buscarGuardiaPorApellidoNamed(apellido);
 	}
+
+	@Override
+	public Guardia buscarApellidoNative(String apellido) {
+		// TODO Auto-generated method stub
+		return this.guardiaRepo.buscarGuardiaPorApellidoNative(apellido);
+	}
 	
 }

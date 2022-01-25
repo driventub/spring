@@ -90,11 +90,16 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 //		Guardia gApellido = this.guardia.buscarApellidoTyped("MVN");
 		
 //		Lo de NamedQuery
-		Guardia gApellido = this.guardia.buscarApellidoNamed("MVN");
+//		Guardia gApellido = this.guardia.buscarApellidoNamed("MVN");
+//		
+//		
+//		LOG.info(gApellido.toString());
 		
 		
-		LOG.info(gApellido.toString());
+//		Taller_20
 		
+		Guardia g2 = this.guardia.buscarApellidoNative("MVN");
+		LOG.info("El guardia es (SQL native) " + g2.getApellido());
 		
 	}
 
