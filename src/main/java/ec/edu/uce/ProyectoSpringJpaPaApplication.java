@@ -1,6 +1,8 @@
 package ec.edu.uce;
 
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,8 +100,29 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 		
 //		Taller_20
 		
+//		Guardia g2 = this.guardia.buscarApellidoNative("MVN");
+//		LOG.info("El guardia es (SQL native) " + g2.getApellido());
+		
+		
+//		Taller 21
+		
 		Guardia g2 = this.guardia.buscarApellidoNative("MVN");
-		LOG.info("El guardia es (SQL native) " + g2.getApellido());
+		LOG.info("El guardia es (SQL native named) " + g2.getApellido());
+		
+		
+		Guardia gC = this.guardia.buscarApellidoCriteriaApi("MVN");
+		LOG.info("El guardia es (SQL Criteria)" + gC.toString());
+		
+		Guardia gAnd = this.guardia.buscarApellidoCriteriaApiAnd("MVN","Clean Install");
+		LOG.info("El guardia es (SQL Criteria And)" + gAnd.toString());
+		
+		Guardia gOr = this.guardia.buscarApellidoCriteriaApiAnd("MVN","Clean Install");
+		
+		LOG.info("El guardia es (SQL Criteria Or)" + gOr.toString());	
+		
+		
+		
+		
 		
 	}
 
