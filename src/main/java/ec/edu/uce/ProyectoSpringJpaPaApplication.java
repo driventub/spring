@@ -1,6 +1,10 @@
 package ec.edu.uce;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,9 +14,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ec.edu.uce.modelo.jpa.Guardia;
+import ec.edu.uce.modelo.jpa.DetalleFactura;
+import ec.edu.uce.modelo.jpa.Factura;
 import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
-import ec.edu.uce.service.jpa.IGuardiaService;
+import ec.edu.uce.service.jpa.IFacturaService;
 
 
 
@@ -25,8 +30,11 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 //	@Autowired
 //	private IGestorCitaService gestorCitaService;
 	
+//	@Autowired
+//	private IGuardiaService guardia;
+	
 	@Autowired
-	private IGuardiaService guardia;
+	private IFacturaService factura;
 	
 	
 	private static final Logger LOG= LoggerFactory.getLogger(GuardiaRepoImpl.class);
@@ -71,11 +79,11 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 		this.gestorCitaService.registrarNuevaConsulta(p1,r1);
 		*/
 		
-		Guardia g = new Guardia();
-		
-		g.setNombre("Consola");
-		g.setApellido("MVN");
-		g.setEdificio("Clean Install");
+//		Guardia g = new Guardia();
+//		
+//		g.setNombre("Consola");
+//		g.setApellido("MVN");
+//		g.setEdificio("Clean Install");
 //		this.guardia.guardar(g);
 		
 //		Guardia g1 = new Guardia();
@@ -105,22 +113,51 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 		
 		
 //		Taller 21
+//		
+//		Guardia g2 = this.guardia.buscarApellidoNative("MVN");
+//		LOG.info("El guardia es (SQL native named) " + g2.getApellido());
+//		
+//		
+//		Guardia gC = this.guardia.buscarApellidoCriteriaApi("MVN");
+//		LOG.info("El guardia es (SQL Criteria)" + gC.toString());
+//		
+//		Guardia gAnd = this.guardia.buscarApellidoCriteriaApiAnd("MVN","Clean Install");
+//		LOG.info("El guardia es (SQL Criteria And)" + gAnd.toString());
+//		
+//		Guardia gOr = this.guardia.buscarApellidoCriteriaApiAnd("MVN","Clean Install");
+//		
+//		LOG.info("El guardia es (SQL Criteria Or)" + gOr.toString());	
+//		
+		Factura miFactura = new Factura();
 		
-		Guardia g2 = this.guardia.buscarApellidoNative("MVN");
-		LOG.info("El guardia es (SQL native named) " + g2.getApellido());
+		miFactura.setCedula("0123456789");
+		LocalDateTime miFecha = LocalDateTime.of(1989,Month.AUGUST,8,12,45);
+//		LocalDateTime.now() la fecha actual
+		miFactura.setFecha(miFecha);
+		miFactura.setNumero("011-892-8938");
 		
+//		Vamos a construir la lista de detalles
 		
-		Guardia gC = this.guardia.buscarApellidoCriteriaApi("MVN");
-		LOG.info("El guardia es (SQL Criteria)" + gC.toString());
+		List<DetalleFactura> detalles = new ArrayList<>();
 		
-		Guardia gAnd = this.guardia.buscarApellidoCriteriaApiAnd("MVN","Clean Install");
-		LOG.info("El guardia es (SQL Criteria And)" + gAnd.toString());
+//		Primer Detalle
+		DetalleFactura d1 = new DetalleFactura();
+		d1.setCantidad(2);
+		d1.setPrecio(new BigDecimal(2.57));
+		d1.setFactura(miFactura);
 		
-		Guardia gOr = this.guardia.buscarApellidoCriteriaApiAnd("MVN","Clean Install");
+//		Segundo Detalle
+		DetalleFactura d2 = new DetalleFactura();
+		d2.setCantidad(10);
+		d2.setPrecio(new BigDecimal("10.22"));
+		d2.setFactura(miFactura);
 		
-		LOG.info("El guardia es (SQL Criteria Or)" + gOr.toString());	
+		detalles.add(d1);
+		detalles.add(d2);
 		
+		miFactura.setDetalle(detalles);
 		
+		this.factura.guardarFactura(miFactura);
 		
 		
 		
