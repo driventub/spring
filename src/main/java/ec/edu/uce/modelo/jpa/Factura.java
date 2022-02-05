@@ -38,7 +38,7 @@ public class Factura {
 	private List<DetalleFactura> detalle ;
 	
 	
-	
+//	Set y Get
 	public List<DetalleFactura> getDetalle() {
 		return detalle;
 	}

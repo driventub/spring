@@ -2,10 +2,6 @@ package ec.edu.uce;
 
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +10,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ec.edu.uce.modelo.jpa.DetalleFactura;
-import ec.edu.uce.modelo.jpa.Factura;
-import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
-import ec.edu.uce.service.jpa.IFacturaService;
+import ec.edu.uce.modelo.jpa.Ciudadano;
+import ec.edu.uce.modelo.jpa.Empleado;
+import ec.edu.uce.service.jpa.ICiudadanoService;
 
 
 
@@ -33,11 +28,13 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 //	@Autowired
 //	private IGuardiaService guardia;
 	
+//	@Autowired
+//	private IFacturaService factura;
+	
 	@Autowired
-	private IFacturaService factura;
+	private ICiudadanoService ciudadano;
 	
-	
-	private static final Logger LOG= LoggerFactory.getLogger(GuardiaRepoImpl.class);
+	private static final Logger LOG= LoggerFactory.getLogger(ProyectoSpringJpaPaApplication.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaPaApplication.class, args);
@@ -128,37 +125,51 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner{
 //		
 //		LOG.info("El guardia es (SQL Criteria Or)" + gOr.toString());	
 //		
-		Factura miFactura = new Factura();
+//		Factura miFactura = new Factura();
+//		
+//		miFactura.setCedula("0123456789");
+//		LocalDateTime miFecha = LocalDateTime.of(1989,Month.AUGUST,8,12,45);
+////		LocalDateTime.now() la fecha actual
+//		miFactura.setFecha(miFecha);
+//		miFactura.setNumero("011-892-8938");
+//		
+////		Vamos a construir la lista de detalles
+//		
+//		List<DetalleFactura> detalles = new ArrayList<>();
+//		
+////		Primer Detalle
+//		DetalleFactura d1 = new DetalleFactura();
+//		d1.setCantidad(2);
+//		d1.setPrecio(new BigDecimal(2.57));
+//		d1.setFactura(miFactura);
+//		
+////		Segundo Detalle
+//		DetalleFactura d2 = new DetalleFactura();
+//		d2.setCantidad(10);
+//		d2.setPrecio(new BigDecimal("10.22"));
+//		d2.setFactura(miFactura);
+//		
+//		detalles.add(d1);
+//		detalles.add(d2);
+//		
+//		miFactura.setDetalle(detalles);
+//		
+//		this.factura.guardarFactura(miFactura);
 		
-		miFactura.setCedula("0123456789");
-		LocalDateTime miFecha = LocalDateTime.of(1989,Month.AUGUST,8,12,45);
-//		LocalDateTime.now() la fecha actual
-		miFactura.setFecha(miFecha);
-		miFactura.setNumero("011-892-8938");
+//	Taller
 		
-//		Vamos a construir la lista de detalles
+		Ciudadano c1 = new Ciudadano();
+		Empleado e1 = new Empleado();
 		
-		List<DetalleFactura> detalles = new ArrayList<>();
+		c1.setNombre("Nombre");
+		c1.setApellido("Apellido");
 		
-//		Primer Detalle
-		DetalleFactura d1 = new DetalleFactura();
-		d1.setCantidad(2);
-		d1.setPrecio(new BigDecimal(2.57));
-		d1.setFactura(miFactura);
+		e1.setIess("Nose que va aqui");
+		e1.setSalario(new BigDecimal("2.00"));
 		
-//		Segundo Detalle
-		DetalleFactura d2 = new DetalleFactura();
-		d2.setCantidad(10);
-		d2.setPrecio(new BigDecimal("10.22"));
-		d2.setFactura(miFactura);
+		c1.setEmpleado(e1);
 		
-		detalles.add(d1);
-		detalles.add(d2);
-		
-		miFactura.setDetalle(detalles);
-		
-		this.factura.guardarFactura(miFactura);
-		
+		this.ciudadano.guardar(c1);
 		
 		
 	}
