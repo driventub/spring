@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ public class Factura {
 	
 //	Como represento que la factura puede tener muchas detalles
 	
-	@OneToMany(mappedBy = "factura",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "factura",cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<DetalleFactura> detalle ;
 	
 	
@@ -82,8 +83,7 @@ public class Factura {
 
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", cedula=" + cedula + ", detalle="
-				+ detalle + "]";
+		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", cedula=" + cedula + "]";
 	}
 	
 	
