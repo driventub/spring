@@ -1,10 +1,7 @@
 package ec.edu.uce;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,9 +11,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ec.edu.uce.modelo.jpa.DetalleFactura;
+import ec.edu.uce.modelo.jpa.Cliente;
 import ec.edu.uce.modelo.jpa.Factura;
-import ec.edu.uce.service.jpa.ICiudadanoService;
+import ec.edu.uce.modelo.jpa.FacturaSencilla;
+import ec.edu.uce.service.jpa.IClienteService;
+import ec.edu.uce.service.jpa.IDetalleFacturaService;
 import ec.edu.uce.service.jpa.IFacturaService;
 
 @SpringBootApplication
@@ -33,9 +32,15 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 
 	@Autowired
 	private IFacturaService factura;
-
 	@Autowired
-	private ICiudadanoService ciudadano;
+	private IDetalleFacturaService detalle;
+	
+	@Autowired 
+	private IClienteService cliente;
+	
+
+//	@Autowired
+//	private ICiudadanoService ciudadano;
 
 	private static final Logger LOG = LoggerFactory.getLogger(ProyectoSpringJpaPaApplication.class);
 
@@ -200,9 +205,37 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 		
 //		LOG.info(Arrays.toString(l2.toArray()));
 		
-		this.factura.buscarLEFT(miFecha);
+//		this.factura.buscarLEFT(miFecha);
+//		
+//		this.factura.buscarWHERE(miFecha);
 		
-		this.factura.buscarWHERE(miFecha);
+//		Taller 26
+		
+//		this.factura.buscarFETCH(miFecha);
+//		
+//		this.detalle.buscarProductos(new BigDecimal("0.001"), miFecha);
+		
+		Cliente c = new Cliente();
+		c.setNombre("Nombre");
+		
+
+		List<String> lista = new ArrayList<>();
+		lista.add("numero1");
+		lista.add("numero 2");
+		
+		c.setTelefonos(lista);
+				
+		this.cliente.guardar(c);
+		
+		
+		List<FacturaSencilla> l1 = this.factura.buscarSencilla(miFecha);
+		
+		LOG.info("Longitud " + l1.size());
+		for(FacturaSencilla f : l1) {
+			LOG.info(f.toString());
+		}
+			
+			
 		
 	}
 

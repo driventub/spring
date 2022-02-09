@@ -35,7 +35,7 @@ public class Factura {
 	
 //	Como represento que la factura puede tener muchas detalles
 	
-	@OneToMany(mappedBy = "factura",cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "factura",cascade = CascadeType.ALL )
 	private List<DetalleFactura> detalle ;
 	
 	
@@ -83,8 +83,11 @@ public class Factura {
 
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", cedula=" + cedula + "]";
+		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", cedula=" + cedula + ", detalle="
+				+ detalle + "]";
 	}
+
+	
 	
 	
 	
