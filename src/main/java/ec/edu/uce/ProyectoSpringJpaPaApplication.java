@@ -1,8 +1,7 @@
 package ec.edu.uce;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,12 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ec.edu.uce.modelo.jpa.Cliente;
-import ec.edu.uce.modelo.jpa.Factura;
-import ec.edu.uce.modelo.jpa.FacturaSencilla;
-import ec.edu.uce.service.jpa.IClienteService;
-import ec.edu.uce.service.jpa.IDetalleFacturaService;
-import ec.edu.uce.service.jpa.IFacturaService;
+import ec.edu.uce.modelo.jpa.Turista;
+import ec.edu.uce.service.jpa.ITuristaService;
 
 @SpringBootApplication
 public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
@@ -30,17 +25,21 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //	@Autowired
 //	private IGuardiaService guardia;
 
-	@Autowired
-	private IFacturaService factura;
-	@Autowired
-	private IDetalleFacturaService detalle;
-	
-	@Autowired 
-	private IClienteService cliente;
+//	@Autowired
+//	private IFacturaService factura;
+//	@Autowired
+//	private IDetalleFacturaService detalle;
+//	
+//	@Autowired 
+//	private IClienteService cliente;
 	
 
 //	@Autowired
 //	private ICiudadanoService ciudadano;
+	
+//	Unidad 3
+	@Autowired
+	private ITuristaService turista;
 
 	private static final Logger LOG = LoggerFactory.getLogger(ProyectoSpringJpaPaApplication.class);
 
@@ -215,27 +214,45 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //		
 //		this.detalle.buscarProductos(new BigDecimal("0.001"), miFecha);
 		
-		Cliente c = new Cliente();
-		c.setNombre("Nombre");
+//		Cliente c = new Cliente();
+//		c.setNombre("Nombre");
+//		
+//
+//		List<String> lista = new ArrayList<>();
+//		lista.add("numero1");
+//		lista.add("numero 2");
+//		
+//		c.setTelefonos(lista);
+//				
+//		this.cliente.guardar(c);
+//		
+//		
+//		List<FacturaSencilla> l1 = this.factura.buscarSencilla(miFecha);
+//		
+//		LOG.info("Longitud " + l1.size());
+//		for(FacturaSencilla f : l1) {
+//			LOG.info(f.toString());
+//		}
 		
-
-		List<String> lista = new ArrayList<>();
-		lista.add("numero1");
-		lista.add("numero 2");
-		
-		c.setTelefonos(lista);
-				
-		this.cliente.guardar(c);
-		
-		
-		List<FacturaSencilla> l1 = this.factura.buscarSencilla(miFecha);
-		
-		LOG.info("Longitud " + l1.size());
-		for(FacturaSencilla f : l1) {
-			LOG.info(f.toString());
-		}
+//		Unidad 3
+//		Taller 28
 			
-			
+		Turista t1 = new Turista();
+		t1.setNombre("Pepito");
+		t1.setValor(new BigDecimal("33.22"));
+		t1.setAbono(new BigDecimal("33.00"));
+		
+		this.turista.guardar(t1);
+		
+		Turista t2 = new Turista();
+		t2.setNombre("Pepito");
+		t2.setValor(new BigDecimal("33.22"));
+		t2.setAbono(new BigDecimal("33.00"));
+		
+		this.turista.guardar(t2);
+		
+		this.turista.obtenerTodosTuristas();
+		
 		
 	}
 
