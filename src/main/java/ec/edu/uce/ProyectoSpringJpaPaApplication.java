@@ -10,8 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ec.edu.uce.modelo.jpa.Turista;
-import ec.edu.uce.service.jpa.ITuristaService;
+import ec.edu.uce.modelo.jpa.CuentaBancaria;
+import ec.edu.uce.service.jpa.ICuentaBancariaService;
 
 @SpringBootApplication
 public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
@@ -38,8 +38,11 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //	private ICiudadanoService ciudadano;
 	
 //	Unidad 3
+//	@Autowired
+//	private ITuristaService turista;
+	
 	@Autowired
-	private ITuristaService turista;
+	private ICuentaBancariaService cuenta;
 
 	private static final Logger LOG = LoggerFactory.getLogger(ProyectoSpringJpaPaApplication.class);
 
@@ -233,26 +236,43 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //		for(FacturaSencilla f : l1) {
 //			LOG.info(f.toString());
 //		}
-		
+//		
 //		Unidad 3
-//		Taller 28
+//		
 			
-		Turista t1 = new Turista();
-		t1.setNombre("Pepito");
-		t1.setValor(new BigDecimal("33.22"));
-		t1.setAbono(new BigDecimal("33.00"));
+//		Turista t1 = new Turista();
+//		t1.setNombre("Pepito");
+//		t1.setValor(new BigDecimal("33.22"));
+//		t1.setAbono(new BigDecimal("33.00"));
+//		
+//		this.turista.guardar(t1);
+//		
+//		Turista t2 = new Turista();
+//		t2.setNombre("Pepito");
+//		t2.setValor(new BigDecimal("33.22"));
+//		t2.setAbono(new BigDecimal("33.00"));
+//		
+//		this.turista.guardar(t2);
+//		
+//		this.turista.obtenerTodosTuristas();
+//		
 		
-		this.turista.guardar(t1);
+//		Taller 32
+		CuentaBancaria c1 = new CuentaBancaria();
+		CuentaBancaria c2 = new CuentaBancaria();
 		
-		Turista t2 = new Turista();
-		t2.setNombre("Pepito");
-		t2.setValor(new BigDecimal("33.22"));
-		t2.setAbono(new BigDecimal("33.00"));
+		c1.setNumeroCuenta("762348");
+		c1.setClienteCedula("Pedro");
+		c1.setSaldo(new BigDecimal("2.00"));
+		c1.setTipo("Ahorros");
 		
-		this.turista.guardar(t2);
+		c2.setNumeroCuenta("722348");
+		c2.setClienteCedula("Juana");
+		c2.setSaldo(new BigDecimal("3.00"));
+		c2.setTipo("Poliza");
 		
-		this.turista.obtenerTodosTuristas();
-		
+		this.cuenta.insertar(c1);
+		this.cuenta.insertar(c2);
 		
 	}
 
