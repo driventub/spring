@@ -263,16 +263,20 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 		
 		c1.setNumeroCuenta("762348");
 		c1.setClienteCedula("Pedro");
-		c1.setSaldo(new BigDecimal("2.00"));
+		c1.setSaldo(new BigDecimal("2000.00"));
 		c1.setTipo("Ahorros");
 		
 		c2.setNumeroCuenta("722348");
 		c2.setClienteCedula("Juana");
-		c2.setSaldo(new BigDecimal("3.00"));
+		c2.setSaldo(new BigDecimal("3000.00"));
 		c2.setTipo("Poliza");
 		
-		this.cuenta.insertar(c1);
-		this.cuenta.insertar(c2);
+//		this.cuenta.insertar(c1);
+//		this.cuenta.insertar(c2);
+		
+			
+		this.cuenta.realizarTransferencia(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("20.00"));
+	
 		
 	}
 
