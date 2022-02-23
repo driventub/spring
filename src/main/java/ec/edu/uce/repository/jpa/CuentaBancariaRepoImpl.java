@@ -35,11 +35,11 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo {
 	@Override
 	public void actualizar2(CuentaBancaria p) {
 		this.e.merge(p);
-//		try {
+		try {
 			throw new ArrayIndexOutOfBoundsException();
-//			}catch (ArrayIndexOutOfBoundsException e) {
-//				LOG.error("Aqui Capture el ERROR");
-//			}
+			}catch (ArrayIndexOutOfBoundsException e) {
+				LOG.error("Aqui Capture el ERROR");
+			}
 		
 	}
 
