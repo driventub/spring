@@ -4,14 +4,19 @@ import java.math.BigDecimal;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ec.edu.uce.modelo.jpa.CuentaBancaria;
+import ec.edu.uce.repository.jpa.CuentaBancariaRepoImpl;
 import ec.edu.uce.repository.jpa.ICuentaBancariaRepo;
 
 @Service
 public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
+	private static final Logger LOG = LoggerFactory.getLogger(CuentaBancariaServiceImpl.class);
+	
 	@Autowired
 	private ICuentaBancariaRepo cuenta;
 
@@ -24,6 +29,12 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	@Override
 	public void actualizar(CuentaBancaria p) {
 		this.cuenta.actualizarCuentaBancariaPorId(p);
+
+	}
+	@Override
+	public void actualizar2(CuentaBancaria p) {
+		this.cuenta.actualizarCuentaBancariaPorId(p);
+		
 
 	}
 
@@ -45,11 +56,19 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 		
 		BigDecimal nuevoSaldoDes= cuentaDest.getSaldo().add(valorTransfer);
 		cuentaDest.setSaldo(nuevoSaldoDes);
-		cuentaDest.setSaldo(null);
 		
+		
+		LOG.info("AA1");
 		this.cuenta.actualizarCuentaBancariaPorId(cuentaOri);
-		this.cuenta.actualizarCuentaBancariaPorId(cuentaDest);
+		LOG.info("DA!");
 		
+		LOG.info("AA2");
+		try {
+		this.cuenta.actualizar2(cuentaDest);
+		}catch (ArrayIndexOutOfBoundsException e) {
+			LOG.error("LLego el ERROR");
+		}
+		LOG.info("DA2");
 		
 		
 	}

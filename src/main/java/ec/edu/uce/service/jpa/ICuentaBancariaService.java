@@ -12,5 +12,7 @@ public interface ICuentaBancariaService {
 	CuentaBancaria buscar(String cuenta );
 	
 	void realizarTransferencia(String cuentaOrigen , String cuentaDestino, BigDecimal valorTransfer);
+
+	void actualizar2(CuentaBancaria p);
 }
 
