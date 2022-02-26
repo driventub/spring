@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ec.edu.uce.modelo.jpa.CuentaBancaria;
-import ec.edu.uce.repository.jpa.CuentaBancariaRepoImpl;
 import ec.edu.uce.repository.jpa.ICuentaBancariaRepo;
 
 @Service
@@ -32,6 +31,7 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 
 	}
 	@Override
+	
 	public void actualizar2(CuentaBancaria p) {
 		this.cuenta.actualizarCuentaBancariaPorId(p);
 		
@@ -59,10 +59,17 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 		
 		
 		LOG.info("AA1");
+		
+		try {
 		this.cuenta.actualizarCuentaBancariaPorId(cuentaOri);
+		} catch(ArrayIndexOutOfBoundsException e) {
+			LOG.error("LLego el ERROR");
+		}
+		
 		LOG.info("DA!");
 		
 		LOG.info("AA2");
+		
 		try {
 		this.cuenta.actualizar2(cuentaDest);
 		}catch (ArrayIndexOutOfBoundsException e) {

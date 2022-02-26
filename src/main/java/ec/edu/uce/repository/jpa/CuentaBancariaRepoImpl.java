@@ -4,14 +4,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import ec.edu.uce.ProyectoSpringJpaPaApplication;
 import ec.edu.uce.modelo.jpa.CuentaBancaria;
-import ec.edu.uce.modelo.jpa.CuentaBancaria;
+
 
 @Repository
 @Transactional
@@ -29,17 +29,20 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo {
 	@Override
 	public void actualizarCuentaBancariaPorId(CuentaBancaria p) {
 		this.e.merge(p);
+		throw new ArrayIndexOutOfBoundsException();
 		
 	}
 	
+	
 	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void actualizar2(CuentaBancaria p) {
 		this.e.merge(p);
-		try {
-			throw new ArrayIndexOutOfBoundsException();
-			}catch (ArrayIndexOutOfBoundsException e) {
-				LOG.error("Aqui Capture el ERROR");
-			}
+//		try {
+//			throw new ArrayIndexOutOfBoundsException();
+//			}catch (ArrayIndexOutOfBoundsException e) {
+//				LOG.error("Aqui Capture el ERROR");
+//			}
 		
 	}
 
