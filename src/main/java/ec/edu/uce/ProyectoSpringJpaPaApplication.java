@@ -275,10 +275,15 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 ////		this.cuenta.insertar(c2);
 //		
 //			
-		this.cuenta.realizarTransferencia(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("50.00"));
-//	
+//		this.cuenta.realizarTransferencia(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("50.00"));
+		this.cuenta.realizarTransferenciaExpressInicial(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("09.33"));
+//		this.cuenta.realizarTransferenciaExpressInicialNoT(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("2.69"));
 		
-//		Tarea 21	
+//		this.cuenta.enviarMail();
+		this.cuenta.enviarMailNoT();
+		
+//		this.cuenta.propagacionMandatory();
+//		this.cuenta.propagacionSupport();
 		
 	}
 
