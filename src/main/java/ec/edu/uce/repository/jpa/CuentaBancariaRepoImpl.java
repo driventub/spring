@@ -9,6 +9,7 @@ import javax.transaction.Transactional.TxType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import ec.edu.uce.modelo.jpa.CuentaBancaria;
 
@@ -29,6 +30,8 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo {
 	@Override
 	@Transactional(value = TxType.MANDATORY)
 	public void actualizarCuentaBancariaPorId(CuentaBancaria p) {
+//		LOG.info("te"+ TransactionSynchronizationManager.getCurrentTransactionName());
+//		LOG.info("te"+ TransactionSynchronizationManager.isActualTransactionActive());
 		this.e.merge(p);
 		
 

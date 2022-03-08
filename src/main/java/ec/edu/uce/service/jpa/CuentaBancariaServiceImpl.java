@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
 import ec.edu.uce.modelo.jpa.CuentaBancaria;
 import ec.edu.uce.repository.jpa.ICuentaBancariaRepo;
@@ -23,6 +24,9 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	
 	@Autowired
 	private ICuentaBancariaRepo cuenta;
+	
+	@Autowired
+	private CuentaFachadaServiceImpl cuentaFachada;
 
 	@Override
 	public void insertar(CuentaBancaria p) {
@@ -107,6 +111,7 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	@Override
 //	@Transactional(value = TxType.SUPPORTS)
 	@Transactional(value = TxType.REQUIRES_NEW)
+//	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void realizarTransferenciaExpress(String cuentaOrigen, String cuentaDestino, BigDecimal valorTransfer) {
 		
 		LOG.info("Ejecucion SUPPORTS");
