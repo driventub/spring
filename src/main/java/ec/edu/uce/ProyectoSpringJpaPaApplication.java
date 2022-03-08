@@ -1,6 +1,5 @@
 package ec.edu.uce;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
@@ -10,8 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ec.edu.uce.modelo.jpa.CuentaBancaria;
-import ec.edu.uce.service.jpa.ICuentaBancariaService;
+import ec.edu.uce.interfaces.funcionales.IPersonaFunction;
+import ec.edu.uce.interfaces.funcionales.IPersonaUnaryOperator;
+import ec.edu.uce.modelo.jpa.Factura;
 
 @SpringBootApplication
 public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
@@ -41,8 +41,20 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //	@Autowired
 //	private ITuristaService turista;
 	
+//	@Autowired
+//	private ICuentaBancariaService cuenta;
+	
+//	@Autowired
+//	private IPersonaUnaryOperator<String> unary;
+	
+	@Autowired 
+	private IPersonaFunction<String,Factura> personaFunction;
+
+	@Autowired 
+	private IPersonaFunction<String,String> personaFunction1;
+	
 	@Autowired
-	private ICuentaBancariaService cuenta;
+	private IPersonaUnaryOperator<String> unaryOperator;
 
 	private static final Logger LOG = LoggerFactory.getLogger(ProyectoSpringJpaPaApplication.class);
 
@@ -258,32 +270,37 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //		
 		
 //		Taller 32
-		CuentaBancaria c1 = new CuentaBancaria();
-		CuentaBancaria c2 = new CuentaBancaria();
-		
-		c1.setNumeroCuenta("762348");
-		c1.setClienteCedula("Pedro");
-		c1.setSaldo(new BigDecimal("2000.00"));
-		c1.setTipo("Ahorros");
-		
-		c2.setNumeroCuenta("722348");
-		c2.setClienteCedula("Juana");
-		c2.setSaldo(new BigDecimal("3000.00"));
-		c2.setTipo("Poliza");
+//		CuentaBancaria c1 = new CuentaBancaria();
+//		CuentaBancaria c2 = new CuentaBancaria();
 //		
-////		this.cuenta.insertar(c1);
-////		this.cuenta.insertar(c2);
+//		c1.setNumeroCuenta("762348");
+//		c1.setClienteCedula("Pedro");
+//		c1.setSaldo(new BigDecimal("2000.00"));
+//		c1.setTipo("Ahorros");
+//		
+//		c2.setNumeroCuenta("722348");
+//		c2.setClienteCedula("Juana");
+//		c2.setSaldo(new BigDecimal("3000.00"));
+//		c2.setTipo("Poliza");
+//		
+//		this.cuenta.insertar(c1);
+//		this.cuenta.insertar(c2);
 //		
 //			
 //		this.cuenta.realizarTransferencia(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("50.00"));
-		this.cuenta.realizarTransferenciaExpressInicial(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("09.33"));
+//		this.cuenta.realizarTransferenciaExpressInicial(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("09.33"));
 //		this.cuenta.realizarTransferenciaExpressInicialNoT(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("2.69"));
 		
 //		this.cuenta.enviarMail();
-		this.cuenta.enviarMailNoT();
+//		this.cuenta.enviarMailNoT();
 		
 //		this.cuenta.propagacionMandatory();
 //		this.cuenta.propagacionSupport();
+		
+//		String test = this.unaryOperator.apply("A");
+		
+		Factura prueba = this.personaFunction.apply("2");
+		String prueba2 = this.personaFunction1.apply("2");
 		
 	}
 
