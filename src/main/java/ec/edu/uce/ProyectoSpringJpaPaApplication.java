@@ -42,8 +42,7 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //	@Autowired
 //	private ITuristaService turista;
 	
-	@Autowired
-	private ICuentaBancariaService cuenta;
+	
 	
 	@Autowired
 	private CuentaFachadaServiceImpl cuentaFachada;
@@ -291,7 +290,7 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 //			
 //		this.cuenta.realizarTransferencia(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("50.00"));
 //		this.cuenta.realizarTransferenciaExpressInicial(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("09.33"));
-		this.cuentaFachada.realizarTransferenciaExpressInicialNoT(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("2.69"));
+//		this.cuentaFachada.realizarTransferenciaExpressInicialNoT(c1.getNumeroCuenta(),c2.getNumeroCuenta(), new BigDecimal("2.69"));
 		
 //		this.cuenta.enviarMail();
 //		this.cuenta.enviarMailNoT();
@@ -301,10 +300,11 @@ public class ProyectoSpringJpaPaApplication implements CommandLineRunner {
 		
 //		String test = this.unaryOperator.apply("A");
 		
-//		Taller 35
+//		Taller 36
 //		Factura prueba = this.personaFunction.apply("2");
 //		String prueba2 = this.personaFunction1.apply("2");
 		
+//		Taller 37
 	}
 
 }

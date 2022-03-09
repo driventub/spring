@@ -2,5 +2,5 @@ package ec.edu.uce.interfaces.funcionales;
 
 @FunctionalInterface
 public interface IPersonaPredicate<T> {
-	boolean evaluar(T arg1, T arg2);
+	boolean evaluar(T arg1);
 }
